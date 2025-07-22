@@ -42,28 +42,25 @@ class _MyHomePageState extends State<MyHomePage> {
     try {
       final googleUser = await authService.login();
       if (googleUser == null) {
-        print("Вход был отменен пользователем.");
+        // print("Вход был отменен пользователем.");
         return;
       }
 
-      final googleAuth = await googleUser.authentication;
+      // final googleAuth = await googleUser.authentication;
 
-      final String? idToken = googleAuth.idToken;
-      final String? accessToken = googleAuth.accessToken;
-      print("Пользователь успешно вошел!");
-      print(
-        "ID Token: ${idToken?.substring(0, 30)}...",
-      ); // Печатаем для проверки
-      print("Access Token: ${accessToken?.substring(0, 30)}...");
+      // final String? idToken = googleAuth.idToken;
+      // final String? accessToken = googleAuth.accessToken;
+      // print("Пользователь успешно вошел!");
+      // print(
+      //   "ID Token: ${idToken?.substring(0, 30)}...",
+      // ); // Печатаем для проверки
+      // print("Access Token: ${accessToken?.substring(0, 30)}...");
 
-      if (!mounted) return;
+      if (!context.mounted) return;
+
       Navigator.push(
         context,
-        MaterialPageRoute(
-          builder: (context) {
-            return LoggedInPage(user: googleUser);
-          },
-        ),
+        MaterialPageRoute(builder: (context) => LoggedInPage(user: googleUser)),
       );
     } catch (e) {
       showDialog(
